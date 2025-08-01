@@ -1,0 +1,52 @@
+import tkinter
+from tkinter import*
+import pymysql
+from tkinter import messagebox
+from tkinter import ttk
+t=tkinter.Tk()
+t.geometry('800x800')
+t.title('p1')
+def find():
+    db=pymysql.connect(host='localhost',user='root',password='root',database='testdb')
+    cur=db.cursor()
+    xa=int(ae.get())
+    sql="select catname,discription from storeinfo where catid=%d"%(xa)
+    cur.execute(sql)
+    data=cur.fetchone()
+    be.insert(0,data[0])
+    ce.insert(0,data[1])
+    db.close()
+def deletedata():
+    db=pymysql.connect(host='localhost',user='root',password='root',database='testdb')
+    cur=db.cursor()
+    xa=int(ae.get())
+    sql="delete from storeinfo where catid=%d"%(xa)
+    cur.execute(sql)
+    db.commit()
+    messagebox.showinfo('i','data deleted')
+    ae.delete(0,100)
+    be.delete(0,100)
+    ce.delete(0,100)
+    db.close()
+    
+def close():
+    t.destroy()
+a=Label(t,text='category id')
+a.place(x=50,y=50)
+ae=Entry(t,width=10)
+ae.place(x=150,y=50)
+ab=Button(t,text='find',command=find)
+ab.place(x=260,y=50)
+b=Label(t,text='category name')
+b.place(x=50,y=90)
+be=Entry(t,width=10)
+be.place(x=150,y=90)
+c=Label(t,text='discription')
+c.place(x=50,y=130)
+ce=Entry(t,width=10)
+ce.place(x=150,y=130)
+btn=Button(t,text='close',command=close)
+btn.place(x=50,y=320)
+btn3=Button(t,text='delete',command=deletedata)
+btn3.place(x=200,y=320)
+t.mainloop()

@@ -1,0 +1,36 @@
+import tkinter
+from tkinter import*
+import pymysql
+from tkinter import messagebox
+t=tkinter.Tk()
+t.geometry('800x800')
+t.title('billing')
+def savedata():
+    db=pymysql.connect(host='localhost',user='root',password='root',database='testdb')
+    cur=db.cursor()
+    xa=int(ae.get())
+    xb=be.get()
+    xc=ce.get()
+    sql="insert into storeinfo values('%d','%s','%s')"%(xa,xb,xc)
+    cur.execute(sql)
+    db.commit()
+    messagebox.showinfo('hi','data saved')
+    db.close
+    ae.delete(0,100)
+    be.delete(0,100)
+    ce.delete(0,100)
+a=Label(t,text='catid')
+a.place(x=50,y=50)
+ae=Entry(t,width=10)
+ae.place(x=150,y=50)
+b=Label(t,text='categoryname')
+b.place(x=50,y=90)
+be=Entry(t,width=10)
+be.place(x=150,y=90)
+c=Label(t,text='Discription')
+c.place(x=50,y=130)
+ce=Entry(t,width=10)
+ce.place(x=150,y=130)
+btn=Button(t,text='save',command=savedata)
+btn.place(x=50,y=180)
+t.mainloop()

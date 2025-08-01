@@ -1,0 +1,23 @@
+import tkinter
+from tkinter import *
+from tkinter import ttk
+t=tkinter.Tk()
+t.geometry('800x800')
+t.title("my")
+a=Label(t,text='No1')
+a.place(x=50,y=60)
+b=Entry(t,width=20)
+b.place(x=500,y=60)
+c=Label(t,text='No2')
+c.place(x=50,y=100)
+d=Entry(t,width=20)
+d.place(x=500,y=100)
+btn=Button(t,text='+')
+btn.place(x=300,y=200)
+btn=Button(t,text='-')
+btn.place(x=350,y=200)
+btn=Button(t,text='*')
+btn.place(x=400,y=200)
+btn=Button(t,text='/')
+btn.place(x=450,y=200)
+t.mainloop()
